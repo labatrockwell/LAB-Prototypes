@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 	<meta charset=utf-8 />
+ 	<title>Amazing LAB LED Sign</title>
+	<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" src="js/libs/jquery-1.7.1.min.js"></script>
+ 	<script type="text/javascript" src="js/utils.js"></script>
+ 	<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+	<div id="container">
+		<h2>LAB LED Sign</h2><hr />
+		<div>
+			<h3>Input</h3>
+			<hr />
+			<input id="message" type="text" />
+			<input id="button" type="button" value="send" />
+		</div>
+		<div><br /><br />
+			Special commands (try adding these before your message!):<br /><br />
+			<code>
+				&#60;FA&#62; AUTO: Random color & presentation (sort of makes the sign crash...)<br />	 	
+				&#60;FB&#62; OPEN: Open from Center<br />
+				&#60;FQ&#62; APPEAR: Instantly replaces text	 	<br />
+				&#60;FE&#62; CYCLING: Rolling Colors<br />
+				&#60;FI&#62; SCROLL UP: Scroll up from bottom	<br /> 	
+				&#60;FJ&#62; SCROLL DOWN: Scroll down from top<br />
+				&#60;FK&#62; OVERLAP: Two layers slide together to form text	<br /> 	
+				&#60;FL&#62; STACKING: Falling dots form text	 	<br />
+				&#60;FM&#62; COMIC 1: PacMan	 	<br />
+				&#60;FN&#62; COMIC 2: Random creature walking<br />
+				&#60;FR&#62; RANDOM: Random dots appear forming text	 	<br />
+				&#60;FS&#62; SHIFT: Roll message right to left (Default)	<br /> 	
+				&#60;FU&#62; MAGIC: Change text color each time	 	<br />
+			</code>
+		</div>
+	</div>
+</body>
+</html>
