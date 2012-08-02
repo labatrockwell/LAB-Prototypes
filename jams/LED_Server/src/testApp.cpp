@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     port.listDevices();
-    port.setup("/dev/tty.PL2303-0000101D", 9600);
+    port.setup();
     // setup a server with default options on port 9092
     // - pass in true after port to set up with SSL
     bConnected = server.setup( 9094 );
