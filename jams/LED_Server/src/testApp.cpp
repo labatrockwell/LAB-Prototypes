@@ -25,7 +25,23 @@ void testApp::setup(){
     
     ofSetFrameRate(60);
     
-    
+    colors[0] = "<CA>";
+    colors[1] = "<CB>";
+    colors[2] = "<CC>";
+    colors[3] = "<CD>";
+    colors[4] = "<CE>";
+    colors[5] = "<CF>";
+    colors[6] = "<CG>";
+    colors[7] = "<CH>";
+    colors[8] = "<CI>";
+    colors[9] = "<CJ>";
+    colors[10] = "<CK>";
+    colors[11] = "<CL>";
+    colors[12] = "<CM>";
+    colors[13] = "<CN>";
+    colors[14] = "<CO>";
+    colors[15] = "<CP>";
+
     string msg = "<ID01><PA><FB>start\r\n";
     port.writeBytes((unsigned char *)msg.c_str(), msg.length());  
 }
@@ -41,6 +57,7 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::onConnect( ofxLibwebsockets::Event& args ){
     cout<<"on connected"<<endl;
+    args.conn.send("{\"string\":\"" + stringValue + "\",\"bool\":\"" + ofToString(boolValue) + "\",\"int\":\"" + ofToString(intValue) + "\"}");
 }
 
 //--------------------------------------------------------------
@@ -66,8 +83,35 @@ void testApp::onMessage( ofxLibwebsockets::Event& args ){
     
     // trace out string messages or JSON messages!
     if ( args.json != NULL){
-        string msg = "<ID01><PA>"+args.json["message"].asString()+"\r\n";
-        port.writeBytes((unsigned char *)msg.c_str(), msg.length());        
+        string type = args.json["type"].asString();
+        if ( type == "string" ){
+            stringValue = args.json["data"].asString();
+        } else if ( type == "boolean" ){
+            if ( args.json["data"].isInt() ){
+                boolValue = args.json["data"].asInt();
+            } else if ( args.json["data"].isString() ){
+                string val = args.json["data"].asString();
+                boolValue = ofToBool(val);                
+            }
+        } else if ( type == "number" ){
+            if ( args.json["data"].isInt() ){
+                intValue = args.json["data"].asInt();
+            } else if ( args.json["data"].isString() ){
+                string val = args.json["data"].asString();
+                intValue = ofToInt(val);                
+            }
+        }
+        
+        // construct message
+        int where = floor(intValue / 64);
+        
+        string msg;
+        if (boolValue){
+            msg = "<ID01><PA><FN>" + colors[where] + stringValue+"\r\n";            
+        } else {
+            msg = "<ID01><PA>" + colors[where] + stringValue+"\r\n";            
+        }
+        port.writeBytes((unsigned char *)msg.c_str(), msg.length());
     } else {
         //args.message
         string msg = "<ID01><PA>"+args.message+"\r\n";

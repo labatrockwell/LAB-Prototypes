@@ -31,7 +31,13 @@ class testApp : public ofBaseApp{
         vector<string> messages;
     
         //string to send to clients
-        string toSend;
+        string  toSend;
+        string  stringValue;
+        int     intValue;
+        bool    boolValue;
+        
+        // colors
+        string  colors[16];
     
         // websocket methods
         void onConnect( ofxLibwebsockets::Event& args );
