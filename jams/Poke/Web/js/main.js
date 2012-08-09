@@ -67,7 +67,7 @@ function setupSocket(){
 	// it decides what the websocket url is based on the broswer url
 	// e.g. https://mygreathost:9099 = wss://mygreathost:9099
 
-	socket = new WebSocket("ws://localhost:8888");
+	socket = new WebSocket(get_appropriate_ws_url(8888));
 	
 	// open
 	try {

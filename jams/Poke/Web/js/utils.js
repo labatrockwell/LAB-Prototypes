@@ -122,7 +122,7 @@ BrowserDetect.init();
 
 	var pos = 0;
 
-function get_appropriate_ws_url()
+function get_appropriate_ws_url( port )
 {
 	var pcol;
 	var u = document.URL;
@@ -143,5 +143,12 @@ function get_appropriate_ws_url()
 
 	u = u.split('/');
 
-	return pcol + u[0];
+	if ( port ){
+		u = u[0].split(":");
+		return pcol + u[0] + ":"+ port;	
+
+	} else {
+		return pcol + u[0];		
+	}
+
 }
