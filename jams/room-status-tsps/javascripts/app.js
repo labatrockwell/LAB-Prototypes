@@ -103,7 +103,7 @@ $(document).ready( function() {
     ctx.fillStyle = 'rgba(0,0,0,0)';
 
     // connect with default settings
-    tsps = new TSPS.Connection();
+    tsps = new TSPS.Connection("lab-mini-06.local");
     tsps.connect();
     
     // render each time we get a message
